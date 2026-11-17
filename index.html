@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="Browse OrientDig spreadsheet finds from HipobuyFind, filter shoes and clothing by name or item ID, and check sizing, QC photos, and shipping costs before ordering.">
+  <meta name="theme-color" content="#10372c">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="OrientDig spreadsheet | Product Finds &amp; QC Checklist">
+  <meta property="og:description" content="Browse real HipobuyFind listings and use a practical checklist to compare sizes, QC photos, and total costs.">
+  <title>OrientDig spreadsheet | Shoes, Clothing &amp; QC Checklist</title>
+  <!--
+    Search review: orientdigi.com and orientdigs.com emphasize catalog size,
+    categories, and QC coverage. spreadsheetorientdig.com also offers shipping
+    guides. JadeShip offers searchable listings. This page adds source item IDs,
+    explicit price context, and a comparison checklist by product type.
+    Catalog source: https://hipobuyfind.com/ and the linked product detail pages.
+    Indexing status: pending. No public deployment URL was provided.
+    After deployment, add a self-referencing canonical URL and submit that URL
+    through Google Search Console and Bing Webmaster Tools.
+  -->
+  <style>
+    :root{color-scheme:light;--pine:#10372c;--deep:#09241c;--paper:#f7f8f2;--white:#fff;--ink:#172c24;--muted:#465c52;--line:#d2dfd6;--lime:#dcf393}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.6 "DM Sans",system-ui,sans-serif}
+    h1,h2,h3,p{margin:0}
+    h1,h2{line-height:1.08;letter-spacing:-.045em}
+    h2{font-size:clamp(2rem,5vw,3rem)}
+    h3{line-height:1.3}
+    a{color:inherit}
+    :focus-visible{outline:3px solid #528323;outline-offset:4px}
+    .wrap{width:min(70rem,calc(100% - 2rem));margin-inline:auto}
+    .hero{background:radial-gradient(ellipse at 50% 0,#286749,var(--pine) 58%,var(--deep));color:var(--white);text-align:center}
+    .hero-inner{padding:clamp(4rem,11vw,8rem) 0}
+    .hero h1{font-size:clamp(2.75rem,9vw,6.75rem);text-wrap:balance}
+    .hero p{max-width:40rem;margin:1.25rem auto 0;color:#e0eee4}
+    .actions{display:flex;justify-content:center;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:.7rem 1.3rem;border:1px solid var(--lime);border-radius:999px;text-decoration:none;font-weight:750}
+    .button.primary{background:var(--lime);color:var(--deep)}
+    .button.secondary{color:var(--white)}
+    .button:hover{text-decoration:underline}
+    .hero a:focus-visible{outline-color:var(--lime)}
+    section{padding-block:clamp(2.5rem,6vw,4.5rem)}
+    .section-head{text-align:center;margin-bottom:1.5rem}
+    .section-head p{max-width:43rem;margin:.75rem auto 0;color:var(--muted)}
+    .filters{display:grid;grid-template-columns:2fr 1fr;gap:.8rem;max-width:45rem;margin:0 auto 1rem}
+    .filters[hidden],tr[hidden]{display:none}
+    label{display:grid;gap:.3rem;font-weight:700}
+    input,select{min-width:0;width:100%;min-height:46px;padding:.55rem .75rem;border:1px solid #8ca79a;border-radius:.6rem;background:var(--white);color:var(--ink);font:inherit}
+    #count{min-height:1.6em;margin-bottom:.6rem;color:var(--muted)}
+    #count:empty{display:none}
+    .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:1rem;background:var(--white)}
+    table{width:100%;border-collapse:collapse;text-align:left}
+    th,td{padding:.85rem 1rem;vertical-align:top}
+    thead{background:var(--pine);color:var(--white)}
+    tbody tr+tr{border-top:1px solid var(--line)}
+    tbody tr:nth-child(even){background:#f3f7f3}
+    tbody a{font-weight:700;text-underline-offset:.2em}
+    td:nth-child(3),td:nth-child(4){white-space:nowrap;font-variant-numeric:tabular-nums}
+    .note{margin-top:.85rem;color:var(--muted);font-size:.94rem}
+    .guide{background:#eaf1e8;border-block:1px solid var(--line)}
+    .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;padding:0;list-style:none}
+    .cards li,details{padding:1.2rem;border:1px solid var(--line);border-radius:.9rem;background:var(--white)}
+    .cards p,details p{margin-top:.55rem;color:var(--muted)}
+    details+details{margin-top:.7rem}
+    summary{cursor:pointer;font-weight:750}
+    footer{padding:1.5rem 1rem;background:var(--deep);text-align:center;color:#e0eee4}
+    @media(max-width:42rem){.cards{grid-template-columns:1fr}th,td{padding:.65rem .7rem}}
+    @media(max-width:29rem){.filters{grid-template-columns:1fr}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "OrientDig spreadsheet",
+    "inLanguage": "en",
+    "description": "A searchable selection of HipobuyFind product listings with a sizing, quality control, and shipping checklist.",
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "HipobuyFind product listings",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Cream Chunky Sneakers with Wide Laces","url":"https://hipobuyfind.com/goods-148191.html"},
+        {"@type":"ListItem","position":2,"name":"Leather Dress Shoes","url":"https://hipobuyfind.com/goods-148189.html"},
+        {"@type":"ListItem","position":3,"name":"Black Canvas Low-Top Sneakers with Gum Sole","url":"https://hipobuyfind.com/goods-148188.html"},
+        {"@type":"ListItem","position":4,"name":"Gray Hoodie","url":"https://hipobuyfind.com/goods-154936.html"},
+        {"@type":"ListItem","position":5,"name":"Fleece-Lined Hoodie","url":"https://hipobuyfind.com/goods-154917.html"},
+        {"@type":"ListItem","position":6,"name":"Crewneck Sweatshirt","url":"https://hipobuyfind.com/goods-154916.html"}
+      ]
+    }
+  }
+  </script>
+<link rel="canonical" href="https://kakobuyfinds.github.io/kqyls/">
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap hero-inner">
+      <h1>OrientDig spreadsheet</h1>
+      <p>Compare shoes and clothing from HipobuyFind. Save the item IDs you like and check sizing, warehouse photos, and shipping before you order.</p>
+      <div class="actions">
+        <a class="button primary" href="https://hipobuyfind.com">OrientDig spreadsheet</a>
+        <a class="button secondary" href="https://hipobuyfind.com">Buy it now</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap" aria-labelledby="catalog-heading">
+      <div class="section-head">
+        <h2 id="catalog-heading">Browse product finds</h2>
+        <p>Open a listing to check current details. Use the HipobuyFind item ID to find the same listing again.</p>
+      </div>
+      <div class="filters" id="filters" hidden>
+        <label for="query">Search by name or item ID
+          <input type="search" id="query" placeholder="Try fleece or 154917">
+        </label>
+        <label for="category">Category
+          <select id="category">
+            <option value="">All categories</option>
+            <option value="Shoes">Shoes</option>
+            <option value="Clothing">Clothing</option>
+          </select>
+        </label>
+      </div>
+      <p id="count" role="status"></p>
+      <div class="table-wrap" role="region" aria-labelledby="catalog-heading" tabindex="0">
+        <table aria-describedby="price-note">
+          <thead>
+            <tr><th scope="col">Product</th><th scope="col">Category</th><th scope="col">Item ID</th><th scope="col">Listed price</th></tr>
+          </thead>
+          <tbody id="products">
+            <tr><th scope="row"><a href="https://hipobuyfind.com/goods-148191.html">Cream Chunky Sneakers with Wide Laces</a></th><td>Shoes</td><td>148191</td><td>¥350.00</td></tr>
+            <tr><th scope="row"><a href="https://hipobuyfind.com/goods-148189.html">Leather Dress Shoes</a></th><td>Shoes</td><td>148189</td><td>¥400.00</td></tr>
+            <tr><th scope="row"><a href="https://hipobuyfind.com/goods-148188.html">Black Canvas Low-Top Sneakers with Gum Sole</a></th><td>Shoes</td><td>148188</td><td>¥450.00</td></tr>
+            <tr><th scope="row"><a href="https://hipobuyfind.com/goods-154936.html">Gray Hoodie</a></th><td>Clothing</td><td>154936</td><td>¥300.00</td></tr>
+            <tr><th scope="row"><a href="https://hipobuyfind.com/goods-154917.html">Fleece-Lined Hoodie</a></th><td>Clothing</td><td>154917</td><td>¥170.00</td></tr>
+            <tr><th scope="row"><a href="https://hipobuyfind.com/goods-154916.html">Crewneck Sweatshirt</a></th><td>Clothing</td><td>154916</td><td>¥150.00</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" id="price-note">Prices are HipobuyFind listing snapshots in CNY. Check the source for current prices and availability. Calculate delivery, fees, and applicable taxes separately.</p>
+    </section>
+
+    <section class="guide" aria-labelledby="guide-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="guide-heading">What to check before ordering</h2>
+        </div>
+        <ol class="cards">
+          <li>
+            <h3>Confirm the variant and size</h3>
+            <p>For shoes, compare your foot length with the seller’s size chart. For hoodies, measure the chest width, body length, and sleeves of a garment that fits. Save the exact color and size alongside the source listing.</p>
+          </li>
+          <li>
+            <h3>Check warehouse photos</h3>
+            <p>When QC photos are available, match the size label and color to your order. Check both sides of a pair of shoes and look at the seams, cuffs, and measurements on clothing. Check your agent’s return window before approving shipment.</p>
+          </li>
+          <li>
+            <h3>Compare the delivered cost</h3>
+            <p>Add the item price, domestic delivery, any agent fees, international shipping, and applicable taxes. Check whether your shipping line charges by actual or dimensional weight, especially if you plan to keep the shoe box.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="wrap" aria-labelledby="faq-heading">
+      <div class="section-head">
+        <h2 id="faq-heading">OrientDig spreadsheet FAQ</h2>
+      </div>
+      <details>
+        <summary>What is an OrientDig spreadsheet?</summary>
+        <p>It is a product discovery list used to organize shopping finds. This page shows a selection of HipobuyFind listings with product names, categories, item IDs, and price snapshots.</p>
+      </details>
+      <details>
+        <summary>Can I paste a HipobuyFind item ID into OrientDig?</summary>
+        <p>The ID shown here identifies the HipobuyFind listing. Open the product page and check for the original seller URL. If you find one, check whether OrientDig supports that marketplace and the specific item before ordering.</p>
+      </details>
+      <details>
+        <summary>Where can I find QC photos for my order?</summary>
+        <p>Check your agent’s warehouse order page after the item arrives. Photo availability and measurement requests depend on the agent and service selected. A listing photo shows the seller’s presentation of the product, while warehouse photos can show the specific item received.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>Independent shopping guide. Product listings and purchase links lead to HipobuyFind.</footer>
+  <script>
+    const filters = document.getElementById("filters");
+    const query = document.getElementById("query");
+    const category = document.getElementById("category");
+    const count = document.getElementById("count");
+    const products = Array.from(document.querySelectorAll("#products tr"));
+
+    function filterProducts() {
+      const terms = query.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      let matches = 0;
+
+      for (const product of products) {
+        const productCategory = product.cells[1].textContent.trim();
+        const searchableText = Array.from(product.cells).slice(0, 3)
+          .map(cell => cell.textContent.trim().toLowerCase()).join(" ");
+        const matchesCategory = !category.value || category.value === productCategory;
+        const isVisible = matchesCategory && terms.every(term => searchableText.includes(term));
+        product.hidden = !isVisible;
+        if (isVisible) matches += 1;
+      }
+
+      count.textContent = matches
+        ? `${matches} of ${products.length} listings`
+        : "No listings match. Try another name, item ID, or category.";
+    }
+
+    query.addEventListener("input", filterProducts);
+    category.addEventListener("change", filterProducts);
+    filters.hidden = false;
+    filterProducts();
+  </script>
+</body>
+</html>
